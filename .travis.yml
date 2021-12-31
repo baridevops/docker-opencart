@@ -7,14 +7,13 @@ services:
   - docker
 
 before_install:
-  - docker login --username $DOCKER_USER --password $DOCKER_PASSWORD $DOCKER_REGISTRY
+#  - docker login --username $DOCKER_USER --password $DOCKER_PASSWORD $DOCKER_REGISTRY
 
 script:
   - export OPENCART_VERSION=3.0.2.0
-  - docker build -t byjg/opencart:${OPENCART_VERSION} .
-  - docker build -t byjg/opencart:${OPENCART_VERSION}-installer -f Dockerfile-installer .
-  - docker tag byjg/opencart:${OPENCART_VERSION} byjg/opencart:latest
-  - docker push byjg/opencart:${OPENCART_VERSION}
-  - docker push byjg/opencart:${OPENCART_VERSION}-installer
-  - docker push byjg/opencart:latest
-
+  - docker build -t $DOCKER_USER/frontendapp:${OPENCART_VERSION} .
+  - docker build -t $DOCKER_USER/frontendapp:${OPENCART_VERSION}-installer -f Dockerfile-installer .
+  - docker tag $DOCKER_USER/frontendapp:${OPENCART_VERSION} $DOCKER_USER/frontendapp:latest
+  - docker push $DOCKER_USER/frontendapp:${OPENCART_VERSION}
+  - docker push $DOCKER_USER/frontendapp:${OPENCART_VERSION}-installer
+  - docker push $DOCKER_USER/frontendapp:latest

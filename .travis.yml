@@ -8,6 +8,7 @@ services:
 
 before_install:
 #  - docker login --username $DOCKER_USER --password $DOCKER_PASSWORD $DOCKER_REGISTRY
+  - docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
 
 script:
   - export OPENCART_VERSION=3.0.2.0

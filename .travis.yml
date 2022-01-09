@@ -17,12 +17,12 @@ script:
   
 deploy:
   - provider: script
-    script: ./build-tools/travispushtoecr.sh master "frontendapp"
+    script: ./travispushtoecr.sh master "frontendapp"
     skip_cleanup: true
     on:
       branch: master
   - provider: script
-    script: ./build-tools/travispushtoecr.sh tag "frontendapp"
+    script: ./travispushtoecr.sh tag "frontendapp"
     skip_cleanup: true
     on:
       all_branches: true

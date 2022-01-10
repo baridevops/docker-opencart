@@ -8,21 +8,21 @@ services:
 
 before_install:
 #  - docker login --username $DOCKER_USER --password $DOCKER_PASSWORD $DOCKER_REGISTRY
-  - docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+#  - docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
 
 script:
   - docker --version
-  - docker build -t frontendapp1 .
+  - docker build -t frontendapp2 .
   - docker images
   
 deploy:
   - provider: script
-    script: ./travispushtoecr.sh master "frontendapp1"
+    script: ./travispushtoecr.sh master "frontendapp2"
     skip_cleanup: true
     on:
       branch: master
   - provider: script
-    script: ./travispushtoecr.sh tag "frontendapp1"
+    script: ./travispushtoecr.sh tag "frontendapp2"
     skip_cleanup: true
     on:
       all_branches: true
